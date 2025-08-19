@@ -41,7 +41,7 @@ CREATE TABLE ratings (
     FOREIGN KEY (store_id) REFERENCES stores(id) ON DELETE CASCADE
 );
 
--- Insert default admin user (password: Admin123!)
+-- Insert default admin user
 INSERT INTO users (name, email, password, address, role) VALUES 
 ('System Administrator', 'admin@system.com', '$2b$10$8K1p/a0dCVWFUwsLdNmr7uPiRNEkgJAI3Q7J8YLOxJ5Kv7wH9ZKdG', 'System Address', 'admin');
 
