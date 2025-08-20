@@ -19,34 +19,13 @@ import Mockup from "./components/Mockup";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import SlideInOnScroll from "./components/framer/SlideInOnScroll";
-import SlideInOnScrollMockUp from "./components/framer/SlideInOnScrollMockUp";
+
 import AnimatedCounter from "./components/framer/AnimatedCounter";
 import { useState } from "react";
 import { useEffect } from "react";
 
 function Home() {
   const navigate = useNavigate();
-  const ref = useRef(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Wait for component to mount before initializing scroll
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  // Only initialize useScroll after mounting and ref is available
-  const { scrollYProgress } = useScroll(
-    isMounted && ref.current
-      ? {
-          target: ref,
-          offset: ["start 80%", "end 20%"],
-        }
-      : {}
-  );
-
-  const y = useTransform(scrollYProgress, [0, 1], [50, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <div className="min-h-dvh max-w-dvw bg-gradient-to-b from-white to-gray-100 text-black">
@@ -67,7 +46,7 @@ function Home() {
         </div>
       </nav>
 
-      <div className="px-6 lg:px-12 py-30 lg:py-20 lg:pb-24">
+      <div className="px-6 lg:px-12 py-30 lg:py-20 lg:pb-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-18">
             <h1 className="text-4xl lg:text-6xl font-bold pb-8 pt-4 md:pt-16 md:pb-6 bg-gradient-to-r from-purple-800 via-blue-800 to-pink-500 bg-clip-text text-transparent">
@@ -98,11 +77,11 @@ function Home() {
             </div>
           </div>
 
-          <SlideInOnScrollMockUp>
+          <div>
             <div className="hidden lg:block relative mx-auto max-w-4xl mb-24">
               <Mockup />
             </div>
-          </SlideInOnScrollMockUp>
+          </div>
           <div className="lg:hidden relative mx-auto max-w-4xl mb-24">
             <Mockup />
           </div>
@@ -133,10 +112,10 @@ function Home() {
             </div>
           </div>
 
-          <style jsx>{`
+          <style jsx="true">{`
             @keyframes marquee {
               0% {
-                transform: translateX(50%);
+                transform: translateX(100%);
               }
               100% {
                 transform: translateX(0%);
@@ -167,7 +146,7 @@ function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <SlideInOnScroll>
+            <div>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
                   <Star className="w-8 h-8 text-white" />
@@ -185,9 +164,9 @@ function Home() {
                   <span>1-5 star system</span>
                 </div>
               </div>
-            </SlideInOnScroll>
+            </div>
 
-            <SlideInOnScroll>
+            <div>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6">
                   <Users className="w-8 h-8 text-white" />
@@ -205,9 +184,9 @@ function Home() {
                   <span>Secure permissions</span>
                 </div>
               </div>
-            </SlideInOnScroll>
+            </div>
 
-            <SlideInOnScroll>
+            <div>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
                   <Search className="w-8 h-8 text-white" />
@@ -224,9 +203,9 @@ function Home() {
                   <span>Advanced filters</span>
                 </div>
               </div>
-            </SlideInOnScroll>
+            </div>
 
-            <SlideInOnScroll>
+            <div>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6">
                   <Settings className="w-8 h-8 text-white" />
@@ -243,9 +222,9 @@ function Home() {
                   <span>Full control</span>
                 </div>
               </div>
-            </SlideInOnScroll>
+            </div>
 
-            <SlideInOnScroll>
+            <div>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
                   <Shield className="w-8 h-8 text-white" />
@@ -263,9 +242,9 @@ function Home() {
                   <span>Strong validation</span>
                 </div>
               </div>
-            </SlideInOnScroll>
+            </div>
 
-            <SlideInOnScroll>
+            <div>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
                   <BarChart3 className="w-8 h-8 text-white" />
@@ -282,12 +261,12 @@ function Home() {
                   <span>Real-time stats</span>
                 </div>
               </div>
-            </SlideInOnScroll>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="text-center mt-8 p-12">
+      <div className="text-center  p-8">
         <h2 className="text-xl lg:text-3xl font-bold mb-4">
           Built for <span className="text-blue-800">Every User Type</span>
         </h2>
@@ -323,25 +302,25 @@ function Home() {
               </div>
             </div>
           </div>
-
-          <style jsx>{`
-            @keyframes marquee {
-              0% {
-                transform: translateX(0%);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
-            }
-
-            .animate-marquee {
-              animation: marquee 15s linear infinite;
-            }
-          `}</style>
         </div>
+
+        <style jsx="true">{`
+          @keyframes marquee {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(0%);
+            }
+          }
+
+          .animate-marquee {
+            animation: marquee 15s linear infinite;
+          }
+        `}</style>
       </div>
 
-      <SlideInOnScroll>
+      <div>
         <div className="px-6 lg:px-12 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-2xl p-12 border border-blue-500/20">
@@ -369,9 +348,9 @@ function Home() {
             </div>
           </div>
         </div>
-      </SlideInOnScroll>
+      </div>
 
-      <footer className="px-6 lg:px-12 py-12 border-t border-gray-200 bg-gray-100">
+      <footer className="px-6 lg:px-12 pt-12 pb-6 border-t border-gray-200 bg-gray-100">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div className="col-span-1 md:col-span-1">
