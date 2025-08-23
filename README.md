@@ -115,6 +115,18 @@ _User's Dashboard_
 - Proper error handling
 - Role-based access control
 
+## .env Essentials
+
+PORT=
+REACT_APP_API_URL=""
+CLIENT_URL=""
+DB_HOST=""
+DB_PORT=
+DB_USER=""
+DB_PASSWORD=""
+DB_NAME=""
+JWT_SECRET=
+
 ## Data Management Features
 
 ### Sorting Capabilities
