@@ -1,14 +1,20 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ onMenuToggle, isSidebarOpen }) => {
-  const { user, logout } = useAuth();
+const Header = ({ onMenuToggle, isSidebarOpen, user, onLogout }) => {
   const navigate = useNavigate();
   const [showMobileUserMenu, setShowMobileUserMenu] = useState(false);
 
   const handleLogout = () => {
-    logout();
+    // Clear localStorage
+    localStorage.removeItem("token");
+
+    // Call parent logout handler if provided
+    if (onLogout) {
+      onLogout();
+    }
+
+    // Navigate to login
     navigate("/login");
   };
 

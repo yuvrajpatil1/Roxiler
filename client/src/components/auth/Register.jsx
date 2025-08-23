@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { authAPI } from "../../services/api";
 import {
   validateEmail,
   validatePassword,
@@ -19,7 +19,6 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const { register } = useAuth();
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -58,8 +57,17 @@ const Register = () => {
     setErrors({});
 
     try {
-      await register(formData);
-      navigate("/user");
+      const response = await authAPI.register(formData);
+
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        // Navigate to user dashboard after successful registration
+        navigate("/user");
+      } else {
+        setErrors({
+          submit: response.data.message || "Registration failed",
+        });
+      }
     } catch (err) {
       setErrors({
         submit: err.response?.data?.message || "Registration failed",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { authAPI } from "../../services/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 
 const Login = () => {
@@ -10,10 +10,30 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const { login, user } = useAuth();
   const navigate = useNavigate();
 
+  // Check if user is already logged in on component mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const response = await authAPI.getProfile();
+          if (response.data.success) {
+            setUser(response.data.user);
+          }
+        } catch (error) {
+          localStorage.removeItem("token");
+        }
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  // Redirect user based on role when user state changes
   useEffect(() => {
     if (user) {
       switch (user.role) {
@@ -39,7 +59,14 @@ const Login = () => {
 
     try {
       console.log(formData.email, formData.password);
-      await login(formData.email, formData.password);
+      const response = await authAPI.login(formData.email, formData.password);
+
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        setUser(response.data.user);
+      } else {
+        setError(response.data.message || "Login failed");
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     } finally {

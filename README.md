@@ -5,30 +5,41 @@ A web application that allows users to submit ratings for stores registered on t
 ## Tech Stack
 
 ### Backend
+
 - **Framework**: ExpressJS
 - **Database**: MySQL
 
 ### Frontend
+
 - **Framework**: ReactJS
 
 ## Project Overview
 
 This application provides a comprehensive store rating system where users can rate stores on a scale of 1-5. The system implements role-based access control with three distinct user types, each having specific permissions and functionalities.
 
+![Landing Page](./client/src/assets/LandingPage1.png)
+
+![Landing Page](./client/src/assets/LandingPage2.png)
+
+![Users Dashboard](./client/src/assets/DashboardPC.png)
+
 ## User Roles
 
 ### 1. System Administrator
+
 - Manage users and stores
 - Access comprehensive dashboard with analytics
 - Full administrative control over the platform
 
 ### 2. Normal User
+
 - Register and authenticate on the platform
 - Browse and search stores
 - Submit and modify ratings for stores
 - Manage personal account settings
 
 ### 3. Store Owner
+
 - Access store-specific dashboard
 - View customer ratings and feedback
 - Monitor store performance metrics
@@ -36,6 +47,7 @@ This application provides a comprehensive store rating system where users can ra
 ## Features
 
 ### System Administrator Features
+
 - **User Management**: Add new stores, normal users, and admin users
 - **Dashboard Analytics**:
   - Total number of users
@@ -48,6 +60,7 @@ This application provides a comprehensive store rating system where users can ra
 - **Detailed User Views**: Access complete user profiles including ratings for Store Owners
 
 ### Normal User Features
+
 - **Account Management**: Sign up and log in functionality
 - **Profile Updates**: Change password after authentication
 - **Store Discovery**: Browse all registered stores
@@ -61,6 +74,7 @@ This application provides a comprehensive store rating system where users can ra
   - Rating submission/modification options
 
 ### Store Owner Features
+
 - **Authentication**: Secure login access
 - **Password Management**: Update account password
 - **Performance Dashboard**:
@@ -71,6 +85,7 @@ This application provides a comprehensive store rating system where users can ra
 ## Form Validations
 
 ### User Input Requirements
+
 - **Name**: 20-60 characters
 - **Address**: Maximum 400 characters
 - **Password**: 8-16 characters with at least one uppercase letter and one special character
@@ -79,17 +94,20 @@ This application provides a comprehensive store rating system where users can ra
 ## Technical Requirements
 
 ### Database Design
+
 - Follow database design best practices
 - Implement proper relationships between entities
 - Ensure data integrity and normalization
 
 ### Frontend Requirements
+
 - Responsive design using ReactJS
 - User-friendly interface for all user roles
 - Client-side form validation
 - Sorting functionality for all data tables (ascending/descending)
 
 ### Backend Requirements
+
 - RESTful API design
 - Secure authentication and authorization
 - Server-side validation
@@ -99,7 +117,9 @@ This application provides a comprehensive store rating system where users can ra
 ## Data Management Features
 
 ### Sorting Capabilities
+
 All data tables support sorting functionality for key fields including:
+
 - Name
 - Email
 - Address
@@ -107,6 +127,7 @@ All data tables support sorting functionality for key fields including:
 - Rating
 
 ### Search and Filter Options
+
 - Store search by name and address
 - User and store filtering by multiple criteria
 - Real-time search functionality
