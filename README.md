@@ -115,18 +115,6 @@ _User's Dashboard_
 - Proper error handling
 - Role-based access control
 
-## .env Essentials
-
-PORT=
-REACT_APP_API_URL=""
-CLIENT_URL=""
-DB_HOST=""
-DB_PORT=
-DB_USER=""
-DB_PASSWORD=""
-DB_NAME=""
-JWT_SECRET=
-
 ## Data Management Features
 
 ### Sorting Capabilities
@@ -152,3 +140,28 @@ All data tables support sorting functionality for key fields including:
 - Password encryption
 - Input validation and sanitization
 - Protected routes based on user roles
+
+## .env Essentials
+
+Create a `.env` file in your project root directory with the following environment variables:
+
+```bash
+PORT=3001
+REACT_APP_API_URL="http://localhost:3001/api"
+CLIENT_URL="http://localhost:3000"
+
+DB_HOST="localhost"
+DB_PORT=5432
+DB_USER="your_database_username"
+DB_PASSWORD="your_database_password"
+DB_NAME="your_database_name"
+
+JWT_SECRET="your_super_secret_jwt_key_here"
+```
+
+### Setup Instructions
+
+1. Copy the template above into a new `.env` file
+2. Replace placeholder values with your actual configuration
+3. Ensure your `.gitignore` includes `.env`
+4. Restart your development server after making changes
