@@ -21,15 +21,17 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 import AnimatedCounter from "./components/framer/AnimatedCounter";
+import SlideInOnScrollMockup from "./components/framer/SlideInOnScrollMockup";
 import { useState } from "react";
 import { useEffect } from "react";
+import SlideInOnScroll from "./components/framer/SlideInOnScrollMockup";
 
 function Home() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-dvh max-w-dvw bg-gradient-to-b from-white to-gray-100 text-black">
-      <nav className="fixed max-w-full lg:static top-0 left-0 w-full z-50 backdrop-blur-xl lg:border-none lg:backdrop-blur-none lg:bg-transparent bg-gray-100/50 border-b border-gray-100 px-6 py-3 lg:px-12 flex items-center justify-between">
+      <nav className="fixed max-w-full lg:static top-0 left-0 w-full z-50 backdrop-blur-lg lg:border-none lg:backdrop-blur-none lg:bg-transparent bg-gray-100/80 border-b border-gray-100 px-6 py-5 lg:px-12 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <span className="text-2xl lg:text-4xl font-bold text-black">
             checker.
@@ -46,10 +48,10 @@ function Home() {
         </div>
       </nav>
 
-      <div className="px-6 lg:px-12 py-30 lg:py-20 lg:pb-8">
+      <div className="px-6 lg:px-12 py-35 lg:py-20 lg:pb-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-18">
-            <h1 className="text-4xl lg:text-6xl font-bold pb-8 pt-4 md:pt-16 md:pb-6 bg-gradient-to-r from-purple-800 via-blue-800 to-pink-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl lg:md:text-6xl font-bold pb-8 pt-14 md:pt-16 md:pb-6 bg-gradient-to-r from-purple-800 via-blue-800 to-pink-500 bg-clip-text text-transparent">
               Rate and Discover
               <br />
               Amazing Stores
@@ -77,13 +79,15 @@ function Home() {
             </div>
           </div>
 
-          <div>
-            <div className="hidden lg:block relative mx-auto max-w-4xl mb-24">
+          <div className="hidden lg:block">
+            <SlideInOnScrollMockup className=" relative mx-auto mt-50 max-w-4xl mb-24">
               <Mockup />
-            </div>
+            </SlideInOnScrollMockup>
           </div>
-          <div className="lg:hidden relative mx-auto max-w-4xl mb-24">
-            <Mockup />
+          <div className="lg:hidden relative">
+            <SlideInOnScrollMockup className=" mx-auto mt-30 max-w-4xl mb-10">
+              <Mockup />
+            </SlideInOnScrollMockup>
           </div>
         </div>
       </div>
@@ -94,19 +98,31 @@ function Home() {
         <div className="text-center mt-8">
           <div className="overflow-hidden pt-4 md:pt-0 opacity-80">
             <div className="flex animate-marquee space-x-20 whitespace-nowrap">
-              <div className="text-6xl text-red-700 font-semibold">ReactJS</div>
-              <div className="text-6xl text-amber-600 font-semibold">MySQL</div>
-              <div className="text-6xl text-pink-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-red-700 font-semibold">
+                ReactJS
+              </div>
+              <div className="md:text-6xl text-4xl text-amber-600 font-semibold">
+                MySQL
+              </div>
+              <div className="md:text-6xl text-4xl text-pink-600 font-semibold">
                 ExpressJS
               </div>
-              <div className="text-6xl text-red-700 font-semibold">ReactJS</div>
-              <div className="text-6xl text-amber-600 font-semibold">MySQL</div>
-              <div className="text-6xl text-pink-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-red-700 font-semibold">
+                ReactJS
+              </div>
+              <div className="md:text-6xl text-4xl text-amber-600 font-semibold">
+                MySQL
+              </div>
+              <div className="md:text-6xl text-4xl text-pink-600 font-semibold">
                 ExpressJS
               </div>
-              <div className="text-6xl text-red-700 font-semibold">ReactJS</div>
-              <div className="text-6xl text-amber-600 font-semibold">MySQL</div>
-              <div className="text-6xl text-pink-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-red-700 font-semibold">
+                ReactJS
+              </div>
+              <div className="md:text-6xl text-4xl text-amber-600 font-semibold">
+                MySQL
+              </div>
+              <div className="md:text-6xl text-4xl text-pink-600 font-semibold">
                 ExpressJS
               </div>
             </div>
@@ -146,7 +162,7 @@ function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div>
+            <SlideInOnScroll>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
                   <Star className="w-8 h-8 text-white" />
@@ -164,9 +180,9 @@ function Home() {
                   <span>1-5 star system</span>
                 </div>
               </div>
-            </div>
+            </SlideInOnScroll>
 
-            <div>
+            <SlideInOnScroll>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6">
                   <Users className="w-8 h-8 text-white" />
@@ -184,9 +200,9 @@ function Home() {
                   <span>Secure permissions</span>
                 </div>
               </div>
-            </div>
+            </SlideInOnScroll>
 
-            <div>
+            <SlideInOnScroll>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
                   <Search className="w-8 h-8 text-white" />
@@ -203,9 +219,9 @@ function Home() {
                   <span>Advanced filters</span>
                 </div>
               </div>
-            </div>
+            </SlideInOnScroll>
 
-            <div>
+            <SlideInOnScroll>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6">
                   <Settings className="w-8 h-8 text-white" />
@@ -222,9 +238,9 @@ function Home() {
                   <span>Full control</span>
                 </div>
               </div>
-            </div>
+            </SlideInOnScroll>
 
-            <div>
+            <SlideInOnScroll>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
                   <Shield className="w-8 h-8 text-white" />
@@ -242,9 +258,9 @@ function Home() {
                   <span>Strong validation</span>
                 </div>
               </div>
-            </div>
+            </SlideInOnScroll>
 
-            <div>
+            <SlideInOnScroll>
               <div className="bg-slate-900  rounded-2xl p-8">
                 <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
                   <BarChart3 className="w-8 h-8 text-white" />
@@ -261,7 +277,7 @@ function Home() {
                   <span>Real-time stats</span>
                 </div>
               </div>
-            </div>
+            </SlideInOnScroll>
           </div>
         </div>
       </div>
@@ -273,31 +289,31 @@ function Home() {
         <div className="text-center mt-8">
           <div className="overflow-hidden pt-4 md:pt-0 opacity-80">
             <div className="flex animate-marquee space-x-20 whitespace-nowrap">
-              <div className="text-6xl text-red-700 font-semibold">
+              <div className="md:text-6xl text-4xl text-red-700 font-semibold">
                 Normal User
               </div>
-              <div className="text-6xl text-amber-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-amber-600 font-semibold">
                 System Admin
               </div>
-              <div className="text-6xl text-pink-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-pink-600 font-semibold">
                 Store Owner
               </div>
-              <div className="text-6xl text-red-700 font-semibold">
+              <div className="md:text-6xl text-4xl text-red-700 font-semibold">
                 Normal User
               </div>
-              <div className="text-6xl text-amber-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-amber-600 font-semibold">
                 System Admin
               </div>
-              <div className="text-6xl text-pink-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-pink-600 font-semibold">
                 Store Owner
               </div>
-              <div className="text-6xl text-red-700 font-semibold">
+              <div className="md:text-6xl text-4xl text-red-700 font-semibold">
                 Normal User
               </div>
-              <div className="text-6xl text-amber-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-amber-600 font-semibold">
                 System Admin
               </div>
-              <div className="text-6xl text-pink-600 font-semibold">
+              <div className="md:text-6xl text-4xl text-pink-600 font-semibold">
                 Store Owner
               </div>
             </div>

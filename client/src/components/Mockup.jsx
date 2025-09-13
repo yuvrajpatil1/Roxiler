@@ -1,6 +1,6 @@
 import React from "react";
 import DashboardPC from "../assets/DashboardPC.png";
-// import DashboardMobile from "../assets/dashboard-mobile.png";
+import DashboardMobile from "../assets/dashboardMobile.png";
 
 const Mockup = () => {
   return (
@@ -17,7 +17,7 @@ const Mockup = () => {
                 </div>
                 <div className="flex-1 mx-2 sm:mx-4">
                   <div className="bg-gray-600/40 rounded-md px-2 sm:px-3 py-1 text-xs text-gray-300 text-center">
-                    transacto.onrender.com
+                    checker. - Roxiler Systems Assignment
                   </div>
                 </div>
               </div>
@@ -52,11 +52,11 @@ const Mockup = () => {
                   w-10 h-2 sm:w-16 sm:h-4 md:w-18 md:h-4 lg:w-22 lg:h-4 xl:w-24 xl:h-4 
                   bg-black rounded-b-xl sm:rounded-b-2xl z-10"
                 ></div>
-                {/* <img
+                <img
                   src={DashboardMobile}
                   alt="Mobile Dashboard"
                   className="w-full h-full object-cover pt-0 sm:pt-4 md:pt-4 lg:pt-4"
-                /> */}
+                />
               </div>
             </div>
           </div>
