@@ -8,15 +8,12 @@ const Header = ({ onMenuToggle, isSidebarOpen, user: userProp, onLogout }) => {
   const [user, setUser] = useState(userProp || null);
 
   const handleLogout = () => {
-    // Clear localStorage
     localStorage.removeItem("token");
 
-    // Call parent logout handler if provided
     if (onLogout) {
       onLogout();
     }
 
-    // Navigate to login
     navigate("/");
   };
 
@@ -32,7 +29,6 @@ const Header = ({ onMenuToggle, isSidebarOpen, user: userProp, onLogout }) => {
   };
 
   useEffect(() => {
-    // Only fetch user profile if not provided as prop
     if (!userProp) {
       fetchUserProfile();
     } else {
@@ -70,10 +66,7 @@ const Header = ({ onMenuToggle, isSidebarOpen, user: userProp, onLogout }) => {
             </button>
 
             <div className="flex items-center">
-              <a
-                // href="https://localhost:5173"
-                className="text-xl font-bold text-gray-900"
-              >
+              <a href="/" className="text-xl font-bold text-gray-900">
                 recheck.
               </a>
             </div>

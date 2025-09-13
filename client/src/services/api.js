@@ -33,7 +33,6 @@ api.interceptors.response.use(
       url: error.config?.url,
     });
 
-    // Handle specific error cases
     if (error.response?.status === 401) {
       localStorage.removeItem("token");
       window.location.href = "/login";

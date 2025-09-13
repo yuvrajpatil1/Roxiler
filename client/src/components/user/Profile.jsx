@@ -42,11 +42,9 @@ const Profile = () => {
   const handlePasswordUpdate = async (e) => {
     e.preventDefault();
 
-    // Reset errors and success message
     setErrors({});
     setSuccessMessage("");
 
-    // Validation
     const newErrors = {};
 
     if (!passwordData.currentPassword) {
@@ -85,7 +83,6 @@ const Profile = () => {
         });
         setShowPasswordForm(false);
 
-        // Clear success message after 3 seconds
         setTimeout(() => setSuccessMessage(""), 3000);
       }
     } catch (error) {

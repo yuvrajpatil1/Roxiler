@@ -39,6 +39,9 @@ const UserDashboard = () => {
               />
             </svg>
           </button>
+          <a className="font-bold text-2xl p-3 mb-6" href="/">
+            checker.
+          </a>
         </div>
         <Routes>
           <Route path="/" element={<StoreList />} />

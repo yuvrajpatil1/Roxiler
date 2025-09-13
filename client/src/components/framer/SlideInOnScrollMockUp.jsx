@@ -6,11 +6,11 @@ export default function SlideInOnScroll({ children }) {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 90%", "end 85%"], // when top enters, when bottom exits
+    offset: ["start 90%", "end 85%"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [200, 1]); // slide from below
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]); // fade in
+  const y = useTransform(scrollYProgress, [0, 1], [200, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <motion.div ref={ref} style={{ y, opacity }}>

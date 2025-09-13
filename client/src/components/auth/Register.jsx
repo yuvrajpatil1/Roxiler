@@ -61,7 +61,6 @@ const Register = () => {
 
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
-        // Navigate to user dashboard after successful registration
         navigate("/user");
       } else {
         setErrors({

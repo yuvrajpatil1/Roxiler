@@ -14,7 +14,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // Check if user is already logged in on component mount
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("token");
@@ -33,7 +32,6 @@ const Login = () => {
     checkAuth();
   }, []);
 
-  // Redirect user based on role when user state changes
   useEffect(() => {
     if (user) {
       switch (user.role) {

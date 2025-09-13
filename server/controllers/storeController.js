@@ -60,7 +60,6 @@ const getAllStores = async (req, res) => {
       limit = 10,
     } = req.query;
 
-    // Ensure page and limit are valid numbers
     const pageNum = parseInt(page) || 1;
     const limitNum = parseInt(limit) || 10;
     const offset = (pageNum - 1) * limitNum;
@@ -89,7 +88,6 @@ const getAllStores = async (req, res) => {
 
     baseQuery += ` ORDER BY s.${sortField} ${order}`;
 
-    // Use string interpolation for LIMIT/OFFSET instead of prepared statements
     const query = `${baseQuery} LIMIT ${limitNum} OFFSET ${offset}`;
 
     console.log("Query Params:", queryParams);
@@ -102,7 +100,6 @@ const getAllStores = async (req, res) => {
       [stores] = await db.execute(query);
     }
 
-    // Count query
     let countQuery = "SELECT COUNT(*) as total FROM stores s";
     let countParams = [];
 

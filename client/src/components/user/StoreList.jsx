@@ -54,7 +54,7 @@ const StoreList = () => {
 
       if (response.data.success) {
         setShowRatingModal(false);
-        fetchStores(); // Refresh the store list
+        fetchStores();
         alert(response.data.message);
       }
     } catch (error) {
@@ -143,7 +143,6 @@ const StoreList = () => {
               key={store.id}
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex flex-col h-full"
             >
-              {/* Store Header - Fixed Height */}
               <div className="p-6 pb-0">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3 min-h-[2rem] line-clamp-2">
                   {store.name}
@@ -157,7 +156,6 @@ const StoreList = () => {
                 </div>
               </div>
 
-              {/* Rating Section - Consistent Layout */}
               <div className="px-6 pb-4 flex-grow">
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
@@ -206,8 +204,6 @@ const StoreList = () => {
                   )}
                 </div>
               </div>
-
-              {/* Action Button - Fixed Position */}
               <div className="p-6 pt-0 mt-auto">
                 {!store.user_rating && (
                   <button

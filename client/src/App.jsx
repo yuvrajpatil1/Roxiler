@@ -24,7 +24,6 @@ function App() {
             path="/admin/*"
             element={
               <>
-                <Header />
                 <AdminDashboard />
               </>
             }
@@ -33,7 +32,6 @@ function App() {
             path="/user/*"
             element={
               <>
-                <Header />
                 <UserDashboard />
               </>
             }
@@ -42,7 +40,6 @@ function App() {
             path="/store-owner/*"
             element={
               <>
-                <Header />
                 <OwnerDashboard />
               </>
             }

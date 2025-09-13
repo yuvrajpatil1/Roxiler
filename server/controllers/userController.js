@@ -41,12 +41,10 @@ const getAllUsers = async (req, res) => {
       limit = 10,
     } = req.query;
 
-    // Ensure page and limit are valid numbers
     const pageNum = parseInt(page) || 1;
     const limitNum = parseInt(limit) || 10;
     const offset = (pageNum - 1) * limitNum;
 
-    // First, let's check if the users table exists and get its structure
     try {
       const [tableCheck] = await db.execute("SHOW TABLES LIKE 'users'");
       if (tableCheck.length === 0) {
@@ -66,7 +64,6 @@ const getAllUsers = async (req, res) => {
       });
     }
 
-    // Try a simpler query first without LIMIT/OFFSET
     let baseQuery =
       "SELECT id, name, email, address, role, created_at FROM users";
     let queryParams = [];
@@ -92,7 +89,6 @@ const getAllUsers = async (req, res) => {
 
     baseQuery += ` ORDER BY ${sortField} ${order}`;
 
-    // Try without prepared statements for LIMIT/OFFSET (though not ideal for production)
     const query = `${baseQuery} LIMIT ${limitNum} OFFSET ${offset}`;
 
     console.log("Final Query:", query);
@@ -105,7 +101,6 @@ const getAllUsers = async (req, res) => {
       [users] = await db.execute(query);
     }
 
-    // Count query
     let countQuery = "SELECT COUNT(*) as total FROM users";
     let countParams = [];
 
