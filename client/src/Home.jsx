@@ -21,10 +21,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 import AnimatedCounter from "./components/framer/AnimatedCounter";
-import SlideInOnScrollMockup from "./components/framer/SlideInOnScrollMockup";
+import SlideInOnScrollMockup from "./components/framer/SlideInOnScrollMockUp";
 import { useState } from "react";
 import { useEffect } from "react";
-import SlideInOnScroll from "./components/framer/SlideInOnScrollMockup";
+import SlideInOnScroll from "./components/framer/SlideInOnScroll";
 
 function Home() {
   const navigate = useNavigate();
