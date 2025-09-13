@@ -227,8 +227,9 @@ const StoreManagement = () => {
                     {store.address}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {store.average_rating
-                      ? store.average_rating.toFixed(1)
+                    {store.average_rating &&
+                    !isNaN(Number(store.average_rating))
+                      ? Number(store.average_rating).toFixed(1)
                       : "No ratings"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

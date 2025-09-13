@@ -40,9 +40,35 @@ const getAllUsers = async (req, res) => {
       page = 1,
       limit = 10,
     } = req.query;
-    const offset = (page - 1) * limit;
 
-    let query = "SELECT id, name, email, address, role, created_at FROM users";
+    // Ensure page and limit are valid numbers
+    const pageNum = parseInt(page) || 1;
+    const limitNum = parseInt(limit) || 10;
+    const offset = (pageNum - 1) * limitNum;
+
+    // First, let's check if the users table exists and get its structure
+    try {
+      const [tableCheck] = await db.execute("SHOW TABLES LIKE 'users'");
+      if (tableCheck.length === 0) {
+        throw new Error("Users table does not exist");
+      }
+
+      const [columns] = await db.execute("DESCRIBE users");
+      console.log(
+        "Users table columns:",
+        columns.map((col) => col.Field)
+      );
+    } catch (tableError) {
+      console.error("Table check error:", tableError);
+      return res.status(500).json({
+        success: false,
+        message: "Database table issue: " + tableError.message,
+      });
+    }
+
+    // Try a simpler query first without LIMIT/OFFSET
+    let baseQuery =
+      "SELECT id, name, email, address, role, created_at FROM users";
     let queryParams = [];
     let whereConditions = [];
 
@@ -57,46 +83,61 @@ const getAllUsers = async (req, res) => {
     }
 
     if (whereConditions.length > 0) {
-      query += " WHERE " + whereConditions.join(" AND ");
+      baseQuery += " WHERE " + whereConditions.join(" AND ");
     }
 
     const allowedSortFields = ["name", "email", "role", "created_at"];
     const sortField = allowedSortFields.includes(sortBy) ? sortBy : "name";
     const order = sortOrder.toUpperCase() === "DESC" ? "DESC" : "ASC";
 
-    query += ` ORDER BY ${sortField} ${order}`;
+    baseQuery += ` ORDER BY ${sortField} ${order}`;
 
-    query += " LIMIT ? OFFSET ?";
-    queryParams.push(parseInt(limit), parseInt(offset));
+    // Try without prepared statements for LIMIT/OFFSET (though not ideal for production)
+    const query = `${baseQuery} LIMIT ${limitNum} OFFSET ${offset}`;
 
-    const [users] = await db.execute(query, queryParams);
+    console.log("Final Query:", query);
+    console.log("Query Params:", queryParams);
 
+    let users;
+    if (queryParams.length > 0) {
+      [users] = await db.execute(query, queryParams);
+    } else {
+      [users] = await db.execute(query);
+    }
+
+    // Count query
     let countQuery = "SELECT COUNT(*) as total FROM users";
     let countParams = [];
 
     if (whereConditions.length > 0) {
       countQuery += " WHERE " + whereConditions.join(" AND ");
-      countParams = queryParams.slice(0, -2); // Remove limit and offset
+      countParams = queryParams.slice(); // Copy the search/role params
     }
 
-    const [countResult] = await db.execute(countQuery, countParams);
+    let countResult;
+    if (countParams.length > 0) {
+      [countResult] = await db.execute(countQuery, countParams);
+    } else {
+      [countResult] = await db.execute(countQuery);
+    }
+
     const total = countResult[0].total;
 
     res.json({
       success: true,
       users,
       pagination: {
-        page: parseInt(page),
-        limit: parseInt(limit),
+        page: pageNum,
+        limit: limitNum,
         total,
-        pages: Math.ceil(total / limit),
+        pages: Math.ceil(total / limitNum),
       },
     });
   } catch (error) {
     console.error("Get users error:", error);
     res.status(500).json({
       success: false,
-      message: "Failed to get users",
+      message: "Failed to get users: " + error.message,
     });
   }
 };

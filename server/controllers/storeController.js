@@ -59,9 +59,13 @@ const getAllStores = async (req, res) => {
       page = 1,
       limit = 10,
     } = req.query;
-    const offset = (page - 1) * limit;
 
-    let query = `
+    // Ensure page and limit are valid numbers
+    const pageNum = parseInt(page) || 1;
+    const limitNum = parseInt(limit) || 10;
+    const offset = (pageNum - 1) * limitNum;
+
+    let baseQuery = `
       SELECT s.*, u.name as owner_name 
       FROM stores s 
       LEFT JOIN users u ON s.owner_id = u.id
@@ -69,7 +73,7 @@ const getAllStores = async (req, res) => {
     let queryParams = [];
 
     if (search) {
-      query += " WHERE s.name LIKE ? OR s.address LIKE ?";
+      baseQuery += " WHERE s.name LIKE ? OR s.address LIKE ?";
       queryParams.push(`%${search}%`, `%${search}%`);
     }
 
@@ -83,13 +87,22 @@ const getAllStores = async (req, res) => {
     const sortField = allowedSortFields.includes(sortBy) ? sortBy : "name";
     const order = sortOrder.toUpperCase() === "DESC" ? "DESC" : "ASC";
 
-    query += ` ORDER BY s.${sortField} ${order}`;
+    baseQuery += ` ORDER BY s.${sortField} ${order}`;
 
-    query += " LIMIT ? OFFSET ?";
-    queryParams.push(parseInt(limit), parseInt(offset));
+    // Use string interpolation for LIMIT/OFFSET instead of prepared statements
+    const query = `${baseQuery} LIMIT ${limitNum} OFFSET ${offset}`;
 
-    const [stores] = await db.execute(query, queryParams);
+    console.log("Query Params:", queryParams);
+    console.log("Final Query:", query);
 
+    let stores;
+    if (queryParams.length > 0) {
+      [stores] = await db.execute(query, queryParams);
+    } else {
+      [stores] = await db.execute(query);
+    }
+
+    // Count query
     let countQuery = "SELECT COUNT(*) as total FROM stores s";
     let countParams = [];
 
@@ -98,24 +111,30 @@ const getAllStores = async (req, res) => {
       countParams.push(`%${search}%`, `%${search}%`);
     }
 
-    const [countResult] = await db.execute(countQuery, countParams);
+    let countResult;
+    if (countParams.length > 0) {
+      [countResult] = await db.execute(countQuery, countParams);
+    } else {
+      [countResult] = await db.execute(countQuery);
+    }
+
     const total = countResult[0].total;
 
     res.json({
       success: true,
       stores,
       pagination: {
-        page: parseInt(page),
-        limit: parseInt(limit),
+        page: pageNum,
+        limit: limitNum,
         total,
-        pages: Math.ceil(total / limit),
+        pages: Math.ceil(total / limitNum),
       },
     });
   } catch (error) {
     console.error("Get stores error:", error);
     res.status(500).json({
       success: false,
-      message: "Failed to get stores",
+      message: "Failed to get stores: " + error.message,
     });
   }
 };

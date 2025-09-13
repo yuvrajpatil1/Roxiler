@@ -30,6 +30,7 @@ const UserManagement = () => {
       const response = await userAPI.getAllUsers(filters);
       if (response.data.success) {
         setUsers(response.data.users);
+        console.log(response.data.users);
       }
     } catch (error) {
       console.error("Failed to fetch users:", error);

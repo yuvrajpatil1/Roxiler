@@ -9,6 +9,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const menuItems = [
     { name: "Dashboard", path: "/admin" },
@@ -35,7 +36,9 @@ const AdminDashboard = () => {
 
   const DashboardHome = () => (
     <div className="p-6">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Admin Dashboard</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+      </div>
 
       {loading ? (
         <LoadingSpinner />
@@ -112,9 +115,13 @@ const AdminDashboard = () => {
   );
 
   return (
-    <div className="flex">
-      <Sidebar menuItems={menuItems} />
-      <div className="flex-1">
+    <div className="flex h-screen bg-gray-50">
+      <Sidebar
+        menuItems={menuItems}
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+      />
+      <div className="flex-1 overflow-hidden">
         <Routes>
           <Route path="/" element={<DashboardHome />} />
           <Route path="/users" element={<UserManagement />} />

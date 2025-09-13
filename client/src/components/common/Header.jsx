@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { authAPI } from "../../services/api";
 
-const Header = ({ onMenuToggle, isSidebarOpen, user, onLogout }) => {
+const Header = ({ onMenuToggle, isSidebarOpen, user: userProp, onLogout }) => {
   const navigate = useNavigate();
   const [showMobileUserMenu, setShowMobileUserMenu] = useState(false);
+  const [user, setUser] = useState(userProp || null);
 
   const handleLogout = () => {
     // Clear localStorage
@@ -17,6 +19,26 @@ const Header = ({ onMenuToggle, isSidebarOpen, user, onLogout }) => {
     // Navigate to login
     navigate("/login");
   };
+
+  const fetchUserProfile = async () => {
+    try {
+      const response = await authAPI.getProfile();
+      if (response.data.success) {
+        setUser(response.data.user);
+      }
+    } catch (error) {
+      console.error("Failed to fetch user profile:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Only fetch user profile if not provided as prop
+    if (!userProp) {
+      fetchUserProfile();
+    } else {
+      setUser(userProp);
+    }
+  }, [userProp]);
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-30">
@@ -58,7 +80,7 @@ const Header = ({ onMenuToggle, isSidebarOpen, user, onLogout }) => {
                 <div className="text-sm text-gray-600">
                   Welcome,{" "}
                   <span className="font-medium text-gray-900">
-                    {user?.name || "User"}
+                    {user?.name}
                   </span>
                 </div>
                 {user?.role && (
@@ -72,7 +94,7 @@ const Header = ({ onMenuToggle, isSidebarOpen, user, onLogout }) => {
               </div>
               <button
                 onClick={handleLogout}
-                className="text-sm text-gray-600 hover:text-gray-900 px-3 py-1 rounded-md hover:bg-gray-50 transition-colors duration-200"
+                className="text-sm text-red-500 hover:text-red-700 px-3 py-1 rounded-md bg-gray-200 hover:bg-gray-100 transition-colors duration-200"
               >
                 Logout
               </button>
