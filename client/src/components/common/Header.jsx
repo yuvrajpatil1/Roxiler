@@ -17,7 +17,7 @@ const Header = ({ onMenuToggle, isSidebarOpen, user: userProp, onLogout }) => {
     }
 
     // Navigate to login
-    navigate("/login");
+    navigate("/");
   };
 
   const fetchUserProfile = async () => {
@@ -70,7 +70,12 @@ const Header = ({ onMenuToggle, isSidebarOpen, user: userProp, onLogout }) => {
             </button>
 
             <div className="flex items-center">
-              <span className="text-xl font-bold text-gray-900">recheck.</span>
+              <a
+                // href="https://localhost:5173"
+                className="text-xl font-bold text-gray-900"
+              >
+                recheck.
+              </a>
             </div>
           </div>
 
