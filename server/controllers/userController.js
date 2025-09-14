@@ -38,11 +38,11 @@ const getAllUsers = async (req, res) => {
       sortBy = "name",
       sortOrder = "ASC",
       page = 1,
-      limit = 10,
+      limit = 100,
     } = req.query;
 
     const pageNum = parseInt(page) || 1;
-    const limitNum = parseInt(limit) || 10;
+    const limitNum = parseInt(limit) || 100;
     const offset = (pageNum - 1) * limitNum;
 
     try {

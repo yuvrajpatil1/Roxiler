@@ -21,6 +21,8 @@ This application provides a comprehensive store rating system where users can ra
 ![Landing Page](./client/src/assets/LandingPage2.png)
 _Modern landing page with hero section, feature highlights, and call-to-action_
 
+<hr/>
+
 ![User Store List](./client/src/assets/UserStoreList.png)
 _User Store List_
 
@@ -33,19 +35,26 @@ _User Profile_
 ![User Rating Modal](./client/src/assets/UserRatingModal.png)
 _User Rating Modal_
 
+<hr/>
+
 ![Admin Dashboard](./client/src/assets/AdminDashboard.png)
 _Admin Dashboard_
 
-![Users Dashboard](./client/src/assets/AdminUserManagement.png)
+![Admin User Management Panel](./client/src/assets/AdminUserManagement.png)
 _Admin User Management Panel_
 
-![Users Dashboard](./client/src/assets/AdminStoreManagement.png)
+![Admin Store Management](./client/src/assets/AdminStoreManagement.png)
 _Admin Store Management_
 
-![Users Dashboard](./client/src/assets/AdminCreateNewStoreModal.png)
+![Admin Create New Store Modal](./client/src/assets/AdminCreateNewStoreModal.png)
 _Admin Create New Store Modal_
 
-![Users Dashboard](./client/src/assets/StoreOwnerProfile.png)
+<hr/>
+
+![Store Owner Dashbaord](./client/src/assets/StoreOwnerDashboard.png)
+_Store Owner Dashboard_
+
+![Store Owner Profile](./client/src/assets/StoreOwnerProfile.png)
 _Store Owner Profile_
 
 ## User Roles
