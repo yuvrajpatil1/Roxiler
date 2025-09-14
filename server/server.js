@@ -13,7 +13,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://yuvrajkpatil-roxiler.onrender.com",
+    // origin: "https://yuvrajkpatil-roxiler.onrender.com",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );

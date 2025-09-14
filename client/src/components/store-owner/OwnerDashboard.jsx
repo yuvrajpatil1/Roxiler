@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "../common/Sidebar";
 import RatingsView from "./RatingsView";
 import Profile from "../user/Profile";
 
 const OwnerDashboard = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const menuItems = [
     { name: "Dashboard", path: "/store-owner" },
     { name: "Profile", path: "/store-owner/profile" },
