@@ -1,6 +1,6 @@
 import React from "react";
 import DashboardPC from "../assets/DashboardPC.png";
-import DashboardMobile from "../assets/dashboardMobile.png";
+import DashboardMobile from "../assets/DashboardMobile.png";
 
 const Mockup = () => {
   return (
