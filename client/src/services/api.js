@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://roxiler-t6ex.onrender.com/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -35,7 +35,7 @@ api.interceptors.response.use(
 
     if (error.response?.status === 401) {
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      window.location.href = "/";
     }
 
     return Promise.reject(error);
@@ -64,7 +64,6 @@ export const userAPI = {
     return api.get("/users/dashboard/stats");
   },
   getAllUsers: (params = {}) => {
-    // Ensure default values for pagination
     const queryParams = {
       page: params.page || 1,
       limit: params.limit || 10,
