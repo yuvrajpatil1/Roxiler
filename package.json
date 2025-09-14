@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm install && npm run build",
+    "start": "cd server && npm start",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\""
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +24,7 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.14.3",
     "nodemon": "^3.1.10",
+    "pg": "^8.16.3",
     "vite": "^7.1.2"
   }
 }
