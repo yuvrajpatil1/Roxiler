@@ -17,6 +17,11 @@ A web application that allows users to submit ratings for stores registered on t
 
 This application provides a comprehensive store rating system where users can rate stores on a scale of 1-5. The system implements role-based access control with three distinct user types, each having specific permissions and functionalities.
 
+![Demo Video](./Roxiler-Assignment-Video.mp4)
+_Demo Video_
+
+<hr/>
+
 ![Landing Page](./client/src/assets/LandingPage1.png)
 ![Landing Page](./client/src/assets/LandingPage2.png)
 _Modern landing page with hero section, feature highlights, and call-to-action_
